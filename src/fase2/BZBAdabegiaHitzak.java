@@ -38,7 +38,24 @@ public class BZBAdabegiaHitzak {
 	 */
 	public boolean hostoaDa() {
 		return !this.baduEzkerra() && !this.baduEskuina();
-	}	
+	}
+	
+	
+	public Hitza hitzaBilatu(String hitza) {
+		if (this.info.getDatua().equals(hitza)) {
+			return this.info;
+		}
+		if (this.info.getDatua().compareTo(hitza) < 0 && this.baduEzkerra()) {
+
+			return this.ezkerra.hitzaBilatu(hitza);
+		}
+		if (this.info.getDatua().compareTo(hitza) > 0 && this.baduEskuina()) {
+
+			return this.eskuina.hitzaBilatu(hitza);
+		}
+		return null;
+	}
+	
 
 	public BZBAdabegiaHitzak ezabatu(Hitza hitza) {
 
@@ -83,5 +100,7 @@ public class BZBAdabegiaHitzak {
 		}
 		return emaitza;
 	}
+
+
 
 }

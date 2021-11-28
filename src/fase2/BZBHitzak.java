@@ -22,9 +22,10 @@ public class BZBHitzak implements HitzenInterfazea {
 
 	@Override
 	public Hitza hitzaBilatu(String hitza) {
-		// TODO Auto-generated method stub
+
+		if (!this.hutsaDa()) return this.erroa.hitzaBilatu(hitza);
 		return null;
-	}
+		}
 	
 	// Ezabtu metodoa implementatu ahal izateko gehitu beharrekoa metodoa
 
