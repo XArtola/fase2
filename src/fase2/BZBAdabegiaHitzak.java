@@ -1,5 +1,7 @@
 package fase2;
 
+import java.util.LinkedList;
+
 public class BZBAdabegiaHitzak {
 
 	private Hitza info;
@@ -7,10 +9,38 @@ public class BZBAdabegiaHitzak {
 	private BZBAdabegiaHitzak ezkerra;
 	private BZBAdabegiaHitzak eskuina;
 
+	// Eraikitzailea
+
 	public BZBAdabegiaHitzak(String hitza) {
 		info = new Hitza(hitza);
 		ezkerra = null;
 		eskuina = null;
+	}
+
+	// Getterrak eta Setterrak
+
+	public Hitza getInfo() {
+		return info;
+	}
+
+	public void setInfo(Hitza info) {
+		this.info = info;
+	}
+
+	public BZBAdabegiaHitzak getEzkerra() {
+		return ezkerra;
+	}
+
+	public void setEzkerra(BZBAdabegiaHitzak ezkerra) {
+		this.ezkerra = ezkerra;
+	}
+
+	public BZBAdabegiaHitzak getEskuina() {
+		return eskuina;
+	}
+
+	public void setEskuina(BZBAdabegiaHitzak eskuina) {
+		this.eskuina = eskuina;
 	}
 
 	/**
@@ -39,23 +69,21 @@ public class BZBAdabegiaHitzak {
 	public boolean hostoaDa() {
 		return !this.baduEzkerra() && !this.baduEskuina();
 	}
-	
-	
+
 	public Hitza hitzaBilatu(String hitza) {
 		if (this.info.getDatua().equals(hitza)) {
 			return this.info;
 		}
-		if (this.info.getDatua().compareTo(hitza) < 0 && this.baduEzkerra()) {
-
-			return this.ezkerra.hitzaBilatu(hitza);
-		}
-		if (this.info.getDatua().compareTo(hitza) > 0 && this.baduEskuina()) {
+		if (this.info.getDatua().compareTo(hitza) < 0 && this.baduEskuina()) {
 
 			return this.eskuina.hitzaBilatu(hitza);
 		}
+		if (this.info.getDatua().compareTo(hitza) > 0 && this.baduEzkerra()) {
+
+			return this.ezkerra.hitzaBilatu(hitza);
+		}
 		return null;
 	}
-	
 
 	public BZBAdabegiaHitzak ezabatu(Hitza hitza) {
 
@@ -101,6 +129,68 @@ public class BZBAdabegiaHitzak {
 		return emaitza;
 	}
 
+	public void hitzaGehitu(Hitza hitza) {
 
+		if (this.info.getDatua().compareTo(hitza.getDatua()) > 0) {
+			if (this.baduEzkerra()) {
+				this.ezkerra.hitzaGehitu(hitza);
+			} else {
+				this.ezkerra = new BZBAdabegiaHitzak(hitza.getDatua());
+			}
+		} else { 
+			if (this.baduEskuina()) {
+				this.eskuina.hitzaGehitu(hitza);
+			} else {
+				this.eskuina = new BZBAdabegiaHitzak(hitza.getDatua());
+			}
+		}
+
+	}
+
+	public LinkedList<Hitza> lortuEzabatzekoHitzak() {
+
+		LinkedList<Hitza> lista;
+		LinkedList<Hitza> listaEzker;
+		LinkedList<Hitza> listaEskuin;
+
+		if (this.hostoaDa()) {
+
+			lista = new LinkedList<>();
+
+			if (this.info.getWebOrrienLista().getWebenLista().isEmpty())
+
+				lista.add(this.info);
+
+			return lista;
+
+		}
+
+		else {
+
+			if (this.baduEzkerra())
+
+				listaEzker = this.ezkerra.lortuEzabatzekoHitzak();
+
+			else
+				listaEzker = new LinkedList<>();
+
+			if (this.baduEskuina())
+				
+				listaEskuin = this.eskuina.lortuEzabatzekoHitzak();
+
+			else
+				listaEskuin = new LinkedList<>();
+
+			listaEzker.addAll(listaEskuin);
+			
+			if (this.info.getWebOrrienLista().getWebenLista().isEmpty())
+
+				listaEzker.addLast(this.info);
+
+			return listaEzker;
+
+		}
+
+	}
 
 }

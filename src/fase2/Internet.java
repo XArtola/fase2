@@ -114,7 +114,7 @@ public class Internet {
 
 		if (h == null) {
 
-			System.out.println("Ez dago web-orririk gako hitz horrekin");
+			System.out.println("Hitz gakoa ez dago hiztegian");
 			System.out.println("");
 		}
 

@@ -9,9 +9,24 @@ public class WebAplikazioa {
 
 		Internet i = Internet.getInternetInstance();
 		Hiztegia h = Hiztegia.getHiztegiaInstance();
+		//i.hasieratu("fitxategiak/smallindex", "fitxategiak/smallpld-arc");	
 
 		i.hasieratu("fitxategiak/index", "fitxategiak/pld-arc");
-		h.hasieratu("fitxategiak/words.txt");
+		
+		
+		// Hau ez dakit horrela den
+		BZBHitzak zuhaitza = new BZBHitzak();
+		h.setHitzak(zuhaitza);
+		
+		//h.hasieratu("fitxategiak/words.txt");
+
+		
+		///Proba egiteko
+		//h.hasieratu("fitxategiak/smallwords2.txt");
+	h.hasieratu("fitxategiak/wordsshuffle.txt");
+		
+		System.out.println("Sartu da");
+		
 
 		/////////////////////////////////// PROBAK
 		/////////////////////////////////// EGITEKO////////////////////////////////////////////

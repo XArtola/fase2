@@ -32,21 +32,21 @@ public class Hiztegia {
 	public void setHitzak(BZBHitzak hitzak) {
 		this.hitzak = hitzak;
 	}
-	
+
 	/**
-	* Hiztegia hasieratzen du parametro gisa pasatzen zaion hiztegiarekin
-	* @param hiztegia
-	*/
+	 * Hiztegia hasieratzen du parametro gisa pasatzen zaion hiztegiarekin
+	 * 
+	 * @param hiztegia
+	 */
 	public void setHiztegia(HitzenInterfazea hiztegia) {
-		
+
 		/////////////////////////////////////////////////////////////////
 		// Zer getatzen da zuhaitza beharrean hitzen lista pasatzen bazaio??
 		/////////////////////////////////////////////////////////////////
 
 		this.hitzak = hiztegia;
-			
+
 	}
-	
 
 	/**
 	 * Hiztegia kargatzen du emandako fitxategitik
@@ -94,13 +94,15 @@ public class Hiztegia {
 					String bilatzeko = domeinua.substring(j, j + i);
 
 					Hitza bilaketa = this.hitzaBilatu(bilatzeko);
-
 					if (bilaketa != null) {
-						// Konprobatu bi aldiz berdina ez jartzeko
+						// System.out.println("Domeinua: "+domeinua+" Gakoa: "+bilatzeko+" eta bilaketa:
+						// "+bilaketa.getDatua());
+
+						// Hitzaren webenlistan, domeinua jada ez dagoela konprobatu
 						if (!bilaketa.getWebOrrienLista().getWebenLista().contains(web)) {
 
 							bilaketa.getWebOrrienLista().getWebenLista().add(web);
-							// System.out.println("a "+bilaketa.getDatua()+"\t"+web.getDomeinua());
+							// System.out.println(bilaketa.getDatua() + "\t" + web.getDomeinua());
 						}
 
 					}
@@ -126,6 +128,7 @@ public class Hiztegia {
 
 		hitzakKargatu(fitxIzena);
 		hitzenWebakKonputatu();
+		this.getHitzak().bahetuHitzGakoak();
 
 	}
 
