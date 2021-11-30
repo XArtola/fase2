@@ -7,14 +7,20 @@ public class BZBHitzak implements HitzenInterfazea {
 
 	BZBAdabegiaHitzak erroa;
 
+	public void errotu(BZBAdabegiaHitzak erroa) {
+		this.erroa = erroa;
+	}
+
+	/**
+	 * Zuhaitza hutsa den edo ez itzultzen du
+	 * 
+	 * @return boolearra true hutsa bada, false bestela
+	 */
+
 	public boolean hutsaDa() {
 
 		return (this.erroa == null);
 
-	}
-
-	public void errotu(BZBAdabegiaHitzak erroa) {
-		this.erroa = erroa;
 	}
 
 	/**
@@ -32,6 +38,11 @@ public class BZBHitzak implements HitzenInterfazea {
 
 	}
 
+	/**
+	 * Hitz bat bilatzen du zuhaitzean, null ez badu aurkitzen
+	 * 
+	 */
+
 	@Override
 	public Hitza hitzaBilatu(String hitza) {
 
@@ -40,17 +51,17 @@ public class BZBHitzak implements HitzenInterfazea {
 		return null;
 	}
 
-	// Ezabatu metodoa implementatu ahal izateko gehitu beharrekoa metodoa
-
+	/**
+	 * Zuhaitzeko elementurik txikienren balio itzultzen du
+	 * 
+	 */
 	public String ezabatuMin() {
 		if (this.hutsaDa())
 
-			////////////////////////////////////////////////////////////////////////////
-			////////// KONTUZ HONEKIN INTEGER-EN KASUAN MIN_VALUE; ORAIN NULL.
-			///////// ERROREA EMANA DEZAKE
-			////////////////////////////////////////////////////////////////////////////
 			return null;
+
 		else {
+
 			EzabatuMinEmaitza emaitza = erroa.ezabatuMin();
 			this.erroa = emaitza.getAdabegia();
 			return emaitza.getBalioa();
@@ -78,14 +89,14 @@ public class BZBHitzak implements HitzenInterfazea {
 	 * @return Ezabatu behar diren hitzen lista
 	 */
 	private LinkedList<Hitza> lortuEzabatzekoHitzak() {
-		
-		if(this.hutsaDa())
-			
+
+		if (this.hutsaDa())
+
 			return new LinkedList<>();
 		else
-			
+
 			return this.erroa.lortuEzabatzekoHitzak();
-		
+
 	}
 
 	/**
@@ -97,8 +108,6 @@ public class BZBHitzak implements HitzenInterfazea {
 		LinkedList<Hitza> ezabatzekoLista = this.lortuEzabatzekoHitzak();
 
 		for (Hitza hitza : ezabatzekoLista) {
-
-			// System.out.println(hitza.getDatua());
 
 			this.ezabatu(hitza);
 		}

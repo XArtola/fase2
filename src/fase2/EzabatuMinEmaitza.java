@@ -4,6 +4,8 @@ public class EzabatuMinEmaitza {
 
 	private String balioa;
 	private BZBAdabegiaHitzak adabegia;
+	
+	// Get eta setterrak
 
 	public String getBalioa() {
 		return balioa;

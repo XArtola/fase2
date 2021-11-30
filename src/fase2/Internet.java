@@ -118,7 +118,7 @@ public class Internet {
 			System.out.println("");
 		}
 
-		else if (h.getWebOrrienLista() == null) {
+		else if (h.getWebOrrienLista().getWebenLista().isEmpty()) {
 
 			System.out.println("Ez dago web-orririk gako hitz horrekin");
 			System.out.println("");

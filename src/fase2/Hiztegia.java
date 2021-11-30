@@ -13,7 +13,7 @@ public class Hiztegia {
 	// Eraikitzailea
 
 	private Hiztegia() {
-		// HAU ALDATU BILAKETA ZUHAITZ BITARRERA
+
 		this.hitzak = (HitzenInterfazea) new BZBHitzak();
 
 	}
@@ -39,10 +39,6 @@ public class Hiztegia {
 	 * @param hiztegia
 	 */
 	public void setHiztegia(HitzenInterfazea hiztegia) {
-
-		/////////////////////////////////////////////////////////////////
-		// Zer getatzen da zuhaitza beharrean hitzen lista pasatzen bazaio??
-		/////////////////////////////////////////////////////////////////
 
 		this.hitzak = hiztegia;
 
@@ -104,8 +100,7 @@ public class Hiztegia {
 							bilaketa.getWebOrrienLista().getWebenLista().add(web);
 							// System.out.println(bilaketa.getDatua() + "\t" + web.getDomeinua());
 						}
-						
-						
+
 					}
 
 				}
