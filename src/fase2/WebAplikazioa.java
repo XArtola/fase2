@@ -13,20 +13,15 @@ public class WebAplikazioa {
 
 		i.hasieratu("fitxategiak/index", "fitxategiak/pld-arc");
 		
-		
-		// Hau ez dakit horrela den
 		BZBHitzak zuhaitza = new BZBHitzak();
 		h.setHitzak(zuhaitza);
 		
-		//h.hasieratu("fitxategiak/words.txt");
+	//	h.hasieratu("fitxategiak/words.txt");
 
 		
 		///Proba egiteko
 		//h.hasieratu("fitxategiak/smallwords2.txt");
-	h.hasieratu("fitxategiak/wordsshuffle.txt");
-		
-		System.out.println("Sartu da");
-		
+		h.hasieratu("fitxategiak/wordsshuffle.txt");		
 
 		/////////////////////////////////// PROBAK
 		/////////////////////////////////// EGITEKO////////////////////////////////////////////

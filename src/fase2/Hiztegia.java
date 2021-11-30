@@ -104,7 +104,8 @@ public class Hiztegia {
 							bilaketa.getWebOrrienLista().getWebenLista().add(web);
 							// System.out.println(bilaketa.getDatua() + "\t" + web.getDomeinua());
 						}
-
+						
+						
 					}
 
 				}
