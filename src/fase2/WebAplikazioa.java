@@ -11,11 +11,10 @@ public class WebAplikazioa {
 		Hiztegia h = Hiztegia.getHiztegiaInstance();
 
 		i.hasieratu("fitxategiak/index", "fitxategiak/pld-arc");
-
+	
 		BZBHitzak zuhaitza = new BZBHitzak();
-		h.setHitzak(zuhaitza);
+		h.setHiztegia(zuhaitza);
 		h.hasieratu("fitxategiak/wordsshuffle.txt");
-
 
 		/////////////////////////////////// PROBAK
 		/////////////////////////////////// EGITEKO////////////////////////////////////////////

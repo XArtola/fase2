@@ -2,7 +2,7 @@ package fase2;
 
 import java.util.ArrayList;
 
-public class HitzenLista {
+public class HitzenLista implements HitzenInterfazea{
 
 	private ArrayList<Hitza> lista;
 

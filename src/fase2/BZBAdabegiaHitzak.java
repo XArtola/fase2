@@ -70,78 +70,6 @@ public class BZBAdabegiaHitzak {
 		return !this.baduEzkerra() && !this.baduEskuina();
 	}
 
-	public Hitza hitzaBilatu(String hitza) {
-		// Adabegia da hitza
-		if (this.info.getDatua().equals(hitza)) {
-			return this.info;
-		}
-		// Eskuinetara bilatu
-		if (this.info.getDatua().compareTo(hitza) < 0 && this.baduEskuina()) {
-
-			return this.eskuina.hitzaBilatu(hitza);
-		}
-		// Ezkerretara bilatu
-		if (this.info.getDatua().compareTo(hitza) > 0 && this.baduEzkerra()) {
-
-			return this.ezkerra.hitzaBilatu(hitza);
-		}
-		return null;
-	}
-
-	/**
-	 * Zuhaitzeko hitz bat ezabatzen du
-	 *
-	 * @param hitza Ezabatu beharreko hitza
-	 * @return Ezabatu beharreko hitza fuen adabegia
-	 */
-
-	public BZBAdabegiaHitzak ezabatu(Hitza hitza) {
-		// Konparaketaren emaitza gorde
-		int konparaketa = this.info.getDatua().compareTo(hitza.getDatua());
-
-		if (konparaketa == 0) {// Ezabatu beharreko elementua unekoa da
-			if (!this.baduEzkerra())
-				return this.eskuina;
-			else if (!this.baduEskuina())
-				return this.ezkerra;
-			else {// Baditu ezker eta eskuin azpizuhaitzak
-				EzabatuMinEmaitza min = this.eskuina.ezabatuMin();
-				this.eskuina = min.getAdabegia();
-				this.info.setDatua(min.getBalioa());
-				return this;
-			}
-		} else if (konparaketa > 0) {// Ezabatu beharreko elementua ezkerretara
-			if (this.baduEzkerra())
-				this.ezkerra = this.ezkerra.ezabatu(hitza);
-			return this;
-		} else {// ezabatu beharreko elementua eskuinetara
-			if (this.baduEskuina())
-				this.eskuina = this.eskuina.ezabatu(hitza);
-			return this;
-		}
-
-	}
-
-	/**
-	 * Zuhaitzeko elementurik txikiena itzultzen du datua eta adabegia
-	 * 
-	 * @return
-	 */
-
-	public EzabatuMinEmaitza ezabatuMin() {
-		EzabatuMinEmaitza emaitza = new EzabatuMinEmaitza();
-		if (!this.baduEzkerra()) {// Txikiena unekoa da
-			emaitza.setBalioa(this.info.getDatua());
-			emaitza.setAdabegia(this.eskuina);
-		} else { // Txikiena ezkerreko azpizuhaitzean dago
-			EzabatuMinEmaitza emaitzaEzkerra = this.ezkerra.ezabatuMin();
-			this.ezkerra = emaitzaEzkerra.getAdabegia();
-			emaitza.setBalioa(emaitzaEzkerra.getBalioa());
-			emaitza.setAdabegia(this);
-		}
-		return emaitza;
-	}
-
 	/**
 	 * Hitza gehitzen du
 	 * 
@@ -163,6 +91,31 @@ public class BZBAdabegiaHitzak {
 			}
 		}
 
+	}
+
+	/**
+	 * Zuhaitzean hitza bilatzen du
+	 * 
+	 * @param hitza
+	 * @return Hitza baldin badago, bestela null
+	 */
+
+	public Hitza hitzaBilatu(String hitza) {
+		// Adabegia da hitza
+		if (this.info.getDatua().equals(hitza)) {
+			return this.info;
+		}
+		// Eskuinetara bilatu
+		if (this.info.getDatua().compareTo(hitza) < 0 && this.baduEskuina()) {
+
+			return this.eskuina.hitzaBilatu(hitza);
+		}
+		// Ezkerretara bilatu
+		if (this.info.getDatua().compareTo(hitza) > 0 && this.baduEzkerra()) {
+
+			return this.ezkerra.hitzaBilatu(hitza);
+		}
+		return null;
 	}
 
 	/**
@@ -200,9 +153,63 @@ public class BZBAdabegiaHitzak {
 		// Uneko adabegiko informazioa (Hitza) ezabatu behar den konprobatu
 		if (this.info.getWebOrrienLista().getWebenLista().isEmpty())
 
-			listaEzker.addLast(this.info);
+			lista.addLast(this.info);
 
 		return lista;
+
+	}
+
+	/**
+	 * Zuhaitzeko elementurik txikiena itzultzen du datua eta adabegia
+	 * 
+	 * @return
+	 */
+
+	public EzabatuMinEmaitza ezabatuMin() {
+		EzabatuMinEmaitza emaitza = new EzabatuMinEmaitza();
+		if (!this.baduEzkerra()) {// Txikiena unekoa da
+			emaitza.setBalioa(this.info.getDatua());
+			emaitza.setAdabegia(this.eskuina);
+		} else { // Txikiena ezkerreko azpizuhaitzean dago
+			EzabatuMinEmaitza emaitzaEzkerra = this.ezkerra.ezabatuMin();
+			this.ezkerra = emaitzaEzkerra.getAdabegia();
+			emaitza.setBalioa(emaitzaEzkerra.getBalioa());
+			emaitza.setAdabegia(this);
+		}
+		return emaitza;
+	}
+
+	/**
+	 * Zuhaitzeko hitz bat ezabatzen du
+	 *
+	 * @param hitza Ezabatu beharreko hitza
+	 * @return Ezabatu beharreko hitza fuen adabegia
+	 */
+
+	public BZBAdabegiaHitzak ezabatuHitza(Hitza hitza) {
+		// Konparaketaren emaitza gorde
+		int konparaketa = this.info.getDatua().compareTo(hitza.getDatua());
+
+		if (konparaketa == 0) {// Ezabatu beharreko elementua unekoa da
+			if (!this.baduEzkerra())
+				return this.eskuina;
+			else if (!this.baduEskuina())
+				return this.ezkerra;
+			else {// Baditu ezker eta eskuin azpizuhaitzak
+				EzabatuMinEmaitza min = this.eskuina.ezabatuMin();
+				this.eskuina = min.getAdabegia();
+				this.info.setDatua(min.getBalioa());
+				return this;
+			}
+		} else if (konparaketa > 0) {// Ezabatu beharreko elementua ezkerretara
+			if (this.baduEzkerra())
+				this.ezkerra = this.ezkerra.ezabatuHitza(hitza);
+			return this;
+		} else {// ezabatu beharreko elementua eskuinetara
+			if (this.baduEskuina())
+				this.eskuina = this.eskuina.ezabatuHitza(hitza);
+			return this;
+		}
 
 	}
 

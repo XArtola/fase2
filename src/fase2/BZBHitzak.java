@@ -52,6 +52,23 @@ public class BZBHitzak implements HitzenInterfazea {
 	}
 
 	/**
+	 * Inongo web-orriren hitz gakoak ez diren zuhaitzeko hitzen lista bat itzultzen
+	 * du
+	 * 
+	 * @return Ezabatu behar diren hitzen lista
+	 */
+	private LinkedList<Hitza> lortuEzabatzekoHitzak() {
+
+		if (this.hutsaDa())
+
+			return new LinkedList<>();
+		else
+
+			return this.erroa.lortuEzabatzekoHitzak();
+
+	}
+
+	/**
 	 * Zuhaitzeko elementurik txikienren balio itzultzen du
 	 * 
 	 */
@@ -76,27 +93,10 @@ public class BZBHitzak implements HitzenInterfazea {
 	 *        bakarrik agertuko da
 	 */
 
-	private void ezabatu(Hitza hitza) {
+	private void ezabatuHitza(Hitza hitza) {
 		if (!this.hutsaDa()) {
-			this.erroa = this.erroa.ezabatu(hitza);
+			this.erroa = this.erroa.ezabatuHitza(hitza);
 		}
-	}
-
-	/**
-	 * Inongo web-orriren hitz gakoak ez diren zuhaitzeko hitzen lista bat itzultzen
-	 * du
-	 * 
-	 * @return Ezabatu behar diren hitzen lista
-	 */
-	private LinkedList<Hitza> lortuEzabatzekoHitzak() {
-
-		if (this.hutsaDa())
-
-			return new LinkedList<>();
-		else
-
-			return this.erroa.lortuEzabatzekoHitzak();
-
 	}
 
 	/**
@@ -109,7 +109,8 @@ public class BZBHitzak implements HitzenInterfazea {
 
 		for (Hitza hitza : ezabatzekoLista) {
 
-			this.ezabatu(hitza);
+			this.ezabatuHitza(hitza);
+
 		}
 
 	}

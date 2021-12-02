@@ -14,8 +14,6 @@ public class Hiztegia {
 
 	private Hiztegia() {
 
-		this.hitzak = (HitzenInterfazea) new BZBHitzak();
-
 	}
 
 	// Get/Seterrak
@@ -25,12 +23,8 @@ public class Hiztegia {
 		return hiztegiaInstance;
 	}
 
-	public BZBHitzak getHitzak() {
-		return (BZBHitzak) hitzak;
-	}
-
-	public void setHitzak(BZBHitzak hitzak) {
-		this.hitzak = hitzak;
+	public HitzenInterfazea getHitzak() {
+		return hitzak;
 	}
 
 	/**
@@ -93,7 +87,8 @@ public class Hiztegia {
 					if (bilaketa != null) {
 						// System.out.println("Domeinua: "+domeinua+" Gakoa: "+bilatzeko+" eta bilaketa:
 						// "+bilaketa.getDatua());
-
+						if (bilaketa.getDatua() == "king")
+							System.out.println(domeinua);
 						// Hitzaren webenlistan, domeinua jada ez dagoela konprobatu
 						if (!bilaketa.getWebOrrienLista().getWebenLista().contains(web)) {
 
@@ -124,7 +119,8 @@ public class Hiztegia {
 
 		hitzakKargatu(fitxIzena);
 		hitzenWebakKonputatu();
-		this.getHitzak().bahetuHitzGakoak();
+
+		((BZBHitzak) this.getHitzak()).bahetuHitzGakoak();
 
 	}
 
