@@ -87,8 +87,7 @@ public class Hiztegia {
 					if (bilaketa != null) {
 						// System.out.println("Domeinua: "+domeinua+" Gakoa: "+bilatzeko+" eta bilaketa:
 						// "+bilaketa.getDatua());
-						if (bilaketa.getDatua() == "king")
-							System.out.println(domeinua);
+		
 						// Hitzaren webenlistan, domeinua jada ez dagoela konprobatu
 						if (!bilaketa.getWebOrrienLista().getWebenLista().contains(web)) {
 
@@ -119,8 +118,10 @@ public class Hiztegia {
 
 		hitzakKargatu(fitxIzena);
 		hitzenWebakKonputatu();
-
-		((BZBHitzak) this.getHitzak()).bahetuHitzGakoak();
+		// Hiztegi klasea BZBHitzak klasearekin hasieratu bada bahetu metodoari deia egin
+		if (this.getHitzak().getClass().toString().equals("class fase2.BZBHitzak"))
+			// Casting aplikatu
+			((BZBHitzak) this.getHitzak()).bahetuHitzGakoak();
 
 	}
 
